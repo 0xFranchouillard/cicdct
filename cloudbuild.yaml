@@ -1,8 +1,9 @@
 steps:
-  #build the image with local Dockerfile
+  # Build local dockerfile image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/$APPLICATION_ID', '.']
+    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA', '.' ]
     dir: '.'
-  #push the image to Google Container Registry
+
+  # Push the image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/$APPLICATION_ID']
+    args: [ 'push', 'gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA' ]
