@@ -1,6 +1,8 @@
 steps:
-  - name: 'python:3.7'
-    entrypoint: 'python'
-    args: ['main.py']
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['app', 'deploy']
+  #build the image with local Dockerfile
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/$APPLICATION_ID', '.']
+    dir: '.'
+  #push the image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/$APPLICATION_ID']
