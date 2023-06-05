@@ -1,3 +1,6 @@
 steps:
-  - name: 'gcr.io/cloud-builders/python'
+  - name: 'python:3.7'
+    entrypoint: 'python'
     args: ['main.py']
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy']
